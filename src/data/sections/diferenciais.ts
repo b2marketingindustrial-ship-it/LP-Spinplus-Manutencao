@@ -9,8 +9,8 @@ import type { IconName } from '@data/icons'
 import type { Photo } from '@data/types'
 import { site } from '@data/site'
 
+// Banner enviado pelo cliente (19/10/2026): o navy à esquerda já vem fundido na foto.
 import cenario from '@assets/diferenciais/cenario.jpg'
-import pessoa from '@assets/diferenciais/pessoa.png'
 
 export interface Reason {
   icon: IconName
@@ -25,11 +25,7 @@ export const why = {
   text: `Desde 2003 em ar comprimido, a ${site.brandShort} mantém compressores e secadores Ingersoll Rand com equipe certificada pelo fabricante, peças originais e técnicos habilitados para atuação em plataformas.`,
   scene: {
     src: cenario,
-    alt: 'Planta industrial de óleo e gás com tubulação e equipes em operação',
-  },
-  person: {
-    src: pessoa,
-    alt: `Técnico da ${site.brandShort} trabalhando na manutenção de uma unidade compressora`,
+    alt: 'Técnicos com equipamento de segurança caminhando no píer de uma plataforma offshore ao pôr do sol',
   },
   reasons: [
     {
@@ -63,6 +59,5 @@ export const why = {
   titleLines: readonly string[]
   text: string
   scene: Photo
-  person: Photo
   reasons: readonly [Reason, Reason, Reason, Reason, Reason]
 }

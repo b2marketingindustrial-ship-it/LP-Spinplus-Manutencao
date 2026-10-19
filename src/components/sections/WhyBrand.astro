@@ -3,16 +3,16 @@
  * Diferenciais — fase "autoridade" da biblioteca B2.
  *
  * VARIANTE LOCAL DA SPINPLUS (aprovada pelo cliente em 19/10/2026, docs/BRIEFING.md,
- * Desvios do padrão): bloco navy com o texto à esquerda e a foto clara sangrando à
- * direita, com o técnico recortado à frente; um traço vermelho no lugar do eyebrow; e os
- * 5 diferenciais numa faixa branca com divisórias, em vez de cards sobrepostos. O contrato
+ * Desvios do padrão): bloco coberto pelo banner do cliente, com o navy à esquerda já
+ * fundido na foto dos técnicos offshore e o texto sobre ele; um traço vermelho no lugar do
+ * eyebrow; e os 5 diferenciais numa faixa branca com divisórias, em vez de cards. O contrato
  * da seção é o mesmo da biblioteca — dados, CTA `diferenciais-cta`, bloco navy da fase de
  * autoridade, tone/rhythm.
  *
  * ATENÇÃO: `npm run compose` recopia este arquivo da biblioteca e desfaz a variante.
  * Para recompor a página, restaure este arquivo do git depois de rodar o compose.
  */
-import { Picture, Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
 import Button from '@components/Button.astro'
@@ -33,37 +33,24 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
 ---
 
 <Section id="diferenciais" tone={tone} rhythm={rhythm} container={false}>
-  {/* Bloco navy: no mobile a foto vem antes do texto; no desktop ela sangra à direita */}
+  {/* Bloco navy: no mobile a foto vem antes do texto; no desktop o banner cobre o bloco */}
+  {/* inteiro — o navy da esquerda já vem fundido na imagem, e o texto fica sobre ele. */}
   <div
     class="navy-premium relative flex flex-col overflow-hidden"
     style={`margin-top: calc(-${bleedTop}px - var(--lp-round, 0px)); padding-top: var(--lp-round, 0px)`}
   >
-    <div class="why-photo relative h-[320px] sm:h-[420px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]">
+    <div class="why-photo relative h-[320px] sm:h-[420px] lg:absolute lg:inset-0 lg:h-auto">
       <Picture
         src={why.scene.src}
         alt={why.scene.alt}
-        widths={[640, 1024, 1600]}
-        sizes="(min-width: 1024px) 52vw, 100vw"
+        widths={[640, 1024, 1600, 2174]}
+        sizes="100vw"
         formats={['avif', 'webp']}
         fallbackFormat="webp"
         loading="lazy"
         decoding="async"
-        class="absolute inset-0 h-full w-full object-cover object-center"
+        class="absolute inset-0 h-full w-full object-cover object-[80%_center] lg:object-[35%_center]"
         pictureAttributes={{ class: 'absolute inset-0 h-full w-full' }}
-      />
-      {/* Emenda suave com o navy: só no desktop, onde foto e texto ficam lado a lado */}
-      <span
-        aria-hidden="true"
-        class="pointer-events-none absolute inset-y-0 left-0 hidden w-40 bg-gradient-to-r from-primary-dark to-transparent lg:block"
-      ></span>
-      <Image
-        src={why.person.src}
-        alt={why.person.alt}
-        format="webp"
-        width={720}
-        loading="lazy"
-        decoding="async"
-        class="why-person absolute bottom-0 h-[96%] w-auto max-w-none"
       />
     </div>
 
@@ -119,19 +106,7 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
 </Section>
 
 <style>
-  /* O técnico fica à direita no desktop e centrado no mobile, com a base no chão do bloco. */
-  .why-person {
-    right: 50%;
-    transform: translateX(50%);
-    filter: drop-shadow(0 18px 28px rgb(0 15 35 / 0.35));
-  }
-
   @media (min-width: 1024px) {
-    .why-person {
-      right: 8%;
-      transform: none;
-    }
-
     /* Divisórias verticais entre os diferenciais, como no layout aprovado. */
     .why-item {
       padding-inline: 1.5rem;
