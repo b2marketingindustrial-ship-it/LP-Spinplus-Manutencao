@@ -33,12 +33,12 @@ export const why = {
   },
   reasons: [
     {
-      icon: 'trend-up',
+      icon: 'calendar',
       title: 'Experiência desde 2003',
       description: 'Especialização em soluções de ar comprimido.',
     },
     {
-      icon: 'badge-check',
+      icon: 'shield',
       title: 'Autorização Ingersoll Rand',
       description: 'Distribuição e serviços autorizados no RJ.',
     },
@@ -53,7 +53,7 @@ export const why = {
       description: 'Equipe certificada pela Ingersoll Rand.',
     },
     {
-      icon: 'shield',
+      icon: 'offshore',
       title: 'Atendimento offshore',
       description: 'Técnicos habilitados para atuação em plataformas.',
     },

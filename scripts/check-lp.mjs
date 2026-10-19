@@ -198,10 +198,14 @@ for (const f of astroFiles) {
       'data-hero-grid',
       'fetchpriority="high"',
     ],
+    // Mesmo desvio (19/10/2026): texto à esquerda e o card do formulário à direita, no lugar
+    // do formulário à esquerda. A assinatura foi repinada na ordem nova; o shortcode continua
+    // sendo o formulário, dentro do card `quote-slot`.
     'QuoteForm.astro': [
       'id="cotacao"',
-      'lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]',
-      'order-2 w-full lg:order-1',
+      'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]',
+      'quote-slot',
+      '<slot name="shortcode" />',
       'data-cta="cotacao-whatsapp"',
     ],
     'Footer.astro': [

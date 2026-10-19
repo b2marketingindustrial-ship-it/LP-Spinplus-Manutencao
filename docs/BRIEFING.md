@@ -159,7 +159,7 @@ Nenhuma.
 | Serviço 3 — reconstrução         | `src/assets/linhas/linha-3.png` (800×1067, vertical)    | entregue      | Rotores na oficina, do original vertical (`rotores-1-scaled`), com o flange no quadro. **Avisos do check:lp:** proporção e sem recorte transparente                                                                                                                          |
 | Serviço 4 — contratos (escuro)   | `src/assets/linhas/marcas.png` (1280×800)               | entregue      | Sala de compressores em operação                                                                                                                                                                                                                                             |
 | Aplicações 1–4                   | `src/assets/aplicacoes/aplicacao-{1..4}.png` (1200×900) | entregue      | Recortes do render do hero, da unidade em bancada e da foto offshore do site. **Pendência:** fotos próprias 1200×900                                                                                                                                                         |
-| Cenário (autoridade)             | `src/assets/diferenciais/cenario.jpg` (1600×900)        | entregue      | Planta de óleo e gás do site, escurecida para o texto branco do bloco navy. Origem em 500×432 — **resolução baixa**                                                                                                                                                          |
+| Cenário (autoridade)             | `src/assets/diferenciais/cenario.jpg` (1600×900)        | entregue      | Planta de óleo e gás do site, em cor natural (na variante o texto não fica mais sobre a foto). Origem em 500×432 — **resolução baixa**                                                                                                                                       |
 | Pessoa recortada (autoridade)    | `src/assets/diferenciais/pessoa.png` (1220×1000)        | **pendência** | Técnico recortado de `Capturar-2` (origem 232×404). **Aviso do check:lp:** proporção 1220×1977. Substituir por foto de corpo inteiro, recortada, 1220×1000                                                                                                                   |
 
 ## Pendências priorizadas
@@ -262,6 +262,30 @@ navy da fase de apoio, `tone`/`rhythm` vindos da composição, imagens `lazy` e 
 **Mesmo risco:** `npm run compose` recopia os dois componentes da biblioteca e desfaz as
 variantes. Restaure com
 `git checkout -- src/components/sections/ProcessSteps.astro src/components/sections/ApplicationsGallery.astro`.
+
+### Diferenciais (`diferenciais`) — variante local, e Cotação — desvio da estrutura fixa
+
+Mockup aprovado pelo usuário em 19/10/2026, com a instrução de **não colocar formulário**:
+o lugar dele fica como um card vazio, onde o plugin renderiza o formulário.
+
+| Parte        | Padrão                                                                                          | Nesta LP                                                                                                                                                      |
+| ------------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Diferenciais | Eyebrow "Por que a Spinplus", foto escurecida com gradiente, 5 cards sobrepostos à base do navy | Traço vermelho no lugar do eyebrow, foto clara à direita com o técnico recortado à frente, 5 diferenciais numa faixa branca com divisórias e ícones vermelhos |
+| Cotação      | Formulário (shortcode) à esquerda, texto à direita                                              | Texto à esquerda, card branco **vazio** à direita; eyebrow com traço vermelho; WhatsApp e selos maiores                                                       |
+
+**Diferenciais.** `WhyBrand.astro` reescrito só nesta LP. O texto do eyebrow continua nos dados
+e virou o `aria-label` da faixa de diferenciais. No mobile a foto vem antes do texto, então ela
+voltou à cor natural. Ícones trocados para os do mockup: `calendar` e `offshore` (novos em
+`src/data/icons.ts`) e `shield` em "Autorização Ingersoll Rand"; o selo "Técnicos certificados"
+da cotação também passou a `shield`. Mesmo risco das outras variantes:
+`git checkout -- src/components/sections/WhyBrand.astro` depois de um `npm run compose`.
+
+**Cotação.** `QuoteForm.astro` é estrutura fixa, como Header e Hero: a assinatura A8 do
+`check:lp` foi repinada na ordem nova (`scripts/check-lp.mjs`, com o motivo). O card do
+formulário **não está vazio no HTML**: dentro dele fica o shortcode `[atendimento_form …]`, que o
+plugin do WordPress troca pelo formulário — sem ele não há formulário no site publicado, e a
+verificação A7 exige os dois slots. Na prévia estática o código aparece em texto. O card não
+define fonte, cor nem alinhamento do conteúdo, para não interferir no formulário do plugin.
 
 ## Aprovação
 

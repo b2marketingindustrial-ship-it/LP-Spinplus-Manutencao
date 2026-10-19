@@ -75,7 +75,7 @@ export const quote = {
   title: 'Fale com a equipe técnica da Spinplus.',
   text: 'Informe o modelo do compressor e o tipo de atendimento que você precisa. Nossa equipe avalia o equipamento e retorna com a proposta de serviço.',
   trust: [
-    { icon: 'badge-check', label: 'Técnicos certificados Ingersoll Rand' },
+    { icon: 'shield', label: 'Técnicos certificados Ingersoll Rand' },
     { icon: 'gear', label: 'Peças originais de fábrica' },
     { icon: 'map-pin', label: 'Atendimento em todo o estado do RJ' },
   ],

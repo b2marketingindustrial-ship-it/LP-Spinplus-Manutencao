@@ -80,6 +80,12 @@ export const iconPaths = {
     '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
   shield:
     '<path d="M12 3.3 5.2 6v5.3c0 4.2 2.8 7.9 6.8 9.4 4-1.5 6.8-5.2 6.8-9.4V6L12 3.3Z"/><path d="m9.2 11.9 2 2 3.6-4"/>',
+  /** Calendário — tempo de casa. */
+  calendar:
+    '<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M7.5 13h.01M12 13h.01M16.5 13h.01M7.5 16.5h.01M12 16.5h.01"/>',
+  /** Plataforma offshore sobre o mar. */
+  offshore:
+    '<path d="M2.5 20c1.6 0 1.6-1 3.2-1s1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.2 1 1.6-1 3.2-1 1.6 1 3.2 1"/><path d="M7 17.5V11.5M17 17.5V11.5M7 14.5h10"/><path d="M5 11.5h14"/><path d="M9.5 11.5V8h5v3.5"/><path d="M12 8V3.5l3 2"/>',
   /** Capacete de segurança — equipe técnica em campo. */
   'hard-hat':
     '<path d="M4 17h16v1.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V17Z"/><path d="M5.5 17v-2.5a6.5 6.5 0 0 1 13 0V17"/><path d="M10 8.3V6h4v2.3"/><path d="M12 10.5V14"/>',
