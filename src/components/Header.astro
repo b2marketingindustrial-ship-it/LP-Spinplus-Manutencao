@@ -1,6 +1,8 @@
 ---
 /**
- * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.1). Não alterar layout, medidas ou ordem.
+ * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.1), com o desvio aprovado pelo cliente em
+ * 19/10/2026: barra branca e logo alinhada dentro dela, no lugar da barra navy com a
+ * placa branca pendurada. Registrado em docs/BRIEFING.md (Desvios do padrão).
  * Muda só: logo (src/assets/LOGO.png), tagline (site.product) e vocabulário de CTA (content.cta).
  */
 import { Image } from 'astro:assets'
@@ -9,31 +11,29 @@ import { site } from '../data/site'
 import { header, cta } from '../data/content'
 ---
 
-<header class="sticky top-0 z-50 bg-primary-dark-900">
+<header class="sticky top-0 z-50 border-b border-primary-dark/10 bg-neutral-light">
   <div class="mx-auto flex max-w-page items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 lg:px-10">
-    {/* 1. Logo em placa branca "pendurada" abaixo da barra */}
-    <a href="/" class="flex shrink-0 items-center self-start">
-      <span class="-mt-3 -mb-10 flex items-center rounded-b-xl bg-neutral-light px-3 pt-1.5 pb-1 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] sm:px-6 sm:pt-2 sm:pb-1.5">
-        <Image
-          src={logo}
-          alt={site.brand}
-          width={240}
-          height={200}
-          format="webp"
-          loading="eager"
-          fetchpriority="low"
-          decoding="async"
-          class="-mt-1 -mb-0.5 h-14 w-auto sm:-mt-2 sm:-mb-1 sm:h-24"
-        />
-      </span>
+    {/* 1. Logo alinhada na barra */}
+    <a href="/" class="flex shrink-0 items-center">
+      <Image
+        src={logo}
+        alt={site.brand}
+        width={240}
+        height={200}
+        format="webp"
+        loading="eager"
+        fetchpriority="low"
+        decoding="async"
+        class="header-logo h-9 w-auto sm:h-14"
+      />
     </a>
 
     {/* 2. Tagline central (some no mobile) */}
-    <span class="hidden flex-1 text-center font-display text-[15px] font-extrabold tracking-[0.14em] text-neutral-light uppercase sm:block lg:text-[17px]">
+    <span class="hidden flex-1 text-center font-display text-[15px] font-extrabold tracking-[0.14em] text-primary-dark uppercase sm:block lg:text-[17px]">
       {header.tagline}
     </span>
 
-    {/* 3. CTA laranja, uppercase, rótulo curto no mobile */}
+    {/* 3. CTA vermelho, uppercase, rótulo curto no mobile */}
     <button
       type="button"
       data-cta="header-cta"

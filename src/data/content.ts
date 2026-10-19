@@ -56,9 +56,9 @@ export const hero = {
     alt: 'Sala de ar comprimido com compressores de parafuso, secador e reservatório Ingersoll Rand',
   },
   points: [
-    { icon: 'wrench', line1: 'Manutenção preventiva', line2: 'e corretiva' },
-    { icon: 'badge-check', line1: 'Técnicos certificados', line2: 'pela Ingersoll Rand' },
-    { icon: 'clock', line1: 'Atendimento 24 horas', line2: 'em todo o Rio de Janeiro' },
+    { icon: 'gear', line1: 'Manutenção preventiva', line2: 'e corretiva' },
+    { icon: 'shield', line1: 'Técnicos', line2: 'certificados' },
+    { icon: 'clock', line1: 'Atendimento 24 horas', line2: 'no Rio de Janeiro' },
   ],
 } as const satisfies {
   eyebrow: string

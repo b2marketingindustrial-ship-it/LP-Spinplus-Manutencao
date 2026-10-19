@@ -3,6 +3,11 @@
  * ESTRUTURA FIXA (PROMPT-PADRAO-LP 4.1.2). Grid desktop: texto (1fr) · coluna VAZIA (270px) · shortcode (300px).
  * A coluna 2 é a janela do banner; nunca coloque conteúdo nela. O banner segue o brief 4.1.3.
  * Abra a página com `?grid=1` para ver as colunas e a zona do assunto sobre a imagem.
+ *
+ * Desvio aprovado pelo cliente em 19/10/2026: o véu navy da esquerda virou uma cunha
+ * clara com o risco vermelho na diagonal, o texto passou a navy sobre claro e os três
+ * pontos desceram para um card branco abaixo dos CTAs. Grid, âncora da foto e coluna do
+ * shortcode seguem os do padrão. Registrado em docs/BRIEFING.md (Desvios do padrão).
  */
 import { Picture } from 'astro:assets'
 import Icon from './Icon.astro'
@@ -13,9 +18,9 @@ import { hero, cta } from '../data/content'
 const isDev = import.meta.env.DEV
 ---
 
-<section class="relative overflow-hidden border-b border-white/15 bg-primary-dark-900" data-hero>
-  {/* z1 — banner ancorado à borda direita do container (desktop) */}
-  <div class="hero-photo absolute inset-0 z-[1]">
+<section class="relative overflow-hidden bg-neutral-gray-100" data-hero>
+  {/* z1 — banner: rodapé da seção no mobile, ancorado à borda direita do container no desktop */}
+  <div class="hero-photo absolute inset-x-0 bottom-0 z-[1] h-[290px] lg:inset-0 lg:h-auto">
     <Picture
       src={hero.banner.src}
       alt={hero.banner.alt}
@@ -31,72 +36,46 @@ const isDev = import.meta.env.DEV
     />
   </div>
 
-  {/* z2 — véus navy: esquerdo (texto) e direito (shortcode) */}
-  <div class="hero-navy pointer-events-none absolute inset-y-0 left-0 z-[2] w-full"></div>
-  <div class="hero-navy-right pointer-events-none absolute inset-y-0 right-0 z-[2] hidden lg:block"></div>
-
-  {/* z3 — malha de pontos */}
-  <div
-    class="hero-dots pointer-events-none absolute inset-y-0 left-0 z-[3] w-full opacity-[0.35] lg:[mask-image:linear-gradient(to_right,black_70%,transparent_100%)]"
-    style="background-image: radial-gradient(circle, rgb(255 255 255 / 0.5) 1px, transparent 1px); background-size: 28px 28px;"
-  ></div>
-
-  {/* z4 — mira técnica */}
-  <svg
-    class="pointer-events-none absolute top-6 left-6 z-[4] size-4 text-white/50"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.5"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="9"></circle>
-    <path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path>
-  </svg>
+  {/* z2 — cunha clara sobre a foto; a de baixo, 10px maior, deixa o risco vermelho à mostra */}
+  <div class="hero-wedge-red pointer-events-none absolute inset-x-0 top-0 bottom-[280px] z-[2] lg:inset-y-0 lg:right-auto lg:bottom-0"></div>
+  <div class="hero-wedge pointer-events-none absolute inset-x-0 top-0 bottom-[290px] z-[2] lg:inset-y-0 lg:right-auto lg:bottom-0"></div>
 
   {/* z5 — conteúdo */}
-  <div class="relative z-[5] mx-auto max-w-page px-6 py-20 lg:px-10 lg:py-24">
+  <div class="relative z-[5] mx-auto max-w-page px-6 pt-14 pb-[330px] lg:px-10 lg:py-24">
     <div class="hero-grid grid items-center gap-y-12 lg:gap-x-6">
       {/* Coluna 1 — textos */}
       <div class="max-w-xl lg:max-w-none">
-        <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
+        <Eyebrow tone="dark">{hero.eyebrow}</Eyebrow>
 
-        <h1 class="mt-2 font-display text-[2.75rem] leading-[1.1] font-extrabold text-neutral-light sm:text-[3rem] lg:text-[2.75rem] xl:text-[3.1rem]">
+        <h1 class="mt-2 font-display text-[2.75rem] leading-[1.1] font-extrabold text-primary-dark sm:text-[3rem] lg:text-[2.75rem] xl:text-[3.1rem]">
           {hero.title}
         </h1>
 
-        <p class="mt-5 font-sans text-lg leading-relaxed text-neutral-light/75 lg:text-base">
-          {hero.text}
-        </p>
+        <p class="mt-5 font-sans text-lg leading-relaxed text-ink-soft lg:text-base">{hero.text}</p>
 
-        {/* Caixa de 3 pontos — texto sempre em duas linhas */}
-        <ul class="hero-points relative z-[3] mt-7 inline-flex max-w-full flex-wrap gap-x-5 gap-y-3 rounded-xl border border-white/10 bg-primary-dark-900/55 px-3.5 py-2.5 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.7)] backdrop-blur-md sm:gap-x-6 sm:px-4 lg:w-max lg:max-w-none lg:flex-nowrap lg:gap-x-6">
+        <div class="mt-7 flex flex-wrap items-center gap-4">
+          <Button cta="hero-primary" variant="primary">
+            {cta.primary}
+          </Button>
+          <Button cta="hero-secondary" variant="outline-dark" iconName="search" iconPosition="left">
+            {cta.secondary}
+          </Button>
+        </div>
+
+        {/* Card de 3 pontos — texto sempre em duas linhas */}
+        <ul class="hero-points relative z-[3] mt-8 flex max-w-full flex-col gap-y-4 lg:max-w-none rounded-2xl border border-primary-dark/5 bg-neutral-light px-5 py-4 shadow-[0_24px_48px_-28px_rgba(0,33,71,0.4)] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 lg:w-max lg:flex-nowrap">
           {hero.points.map((point) => (
-            <li class="hero-point flex items-center gap-2.5">
-              <span class="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/25 bg-white/10 backdrop-blur-sm">
-                <Icon name={point.icon} class="size-[18px] text-neutral-light" />
+            <li class="hero-point flex items-center gap-3">
+              <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent-orange/10">
+                <Icon name={point.icon} class="size-[20px] text-accent-orange" />
               </span>
-              <span class="font-sans text-[13.5px] leading-snug font-semibold text-neutral-light [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]">
+              <span class="font-sans text-[13.5px] leading-snug font-semibold text-primary-dark">
                 <span class="block whitespace-nowrap">{point.line1}</span>
                 <span class="block whitespace-nowrap">{point.line2}</span>
               </span>
             </li>
           ))}
         </ul>
-
-        <div class="mt-7 flex flex-wrap items-center gap-4">
-          <Button cta="hero-primary" variant="primary">
-            {cta.primary}
-          </Button>
-          <Button
-            cta="hero-secondary"
-            variant="outline-light"
-            iconName="search"
-            iconPosition="left"
-          >
-            {cta.secondary}
-          </Button>
-        </div>
       </div>
 
       {/* Coluna 2 — VAZIA de propósito: janela do banner */}
@@ -107,7 +86,7 @@ const isDev = import.meta.env.DEV
         <slot name="shortcode">
           {isDev ? (
             <div
-              class="flex min-h-[430px] w-full flex-col gap-3 rounded-lg border border-white/15 bg-neutral-light p-4 text-left"
+              class="flex min-h-[430px] w-full flex-col gap-3 rounded-xl border border-primary-dark/10 bg-neutral-light p-4 text-left shadow-[0_24px_48px_-28px_rgba(0,33,71,0.45)]"
               aria-label="Mock do chat (só em desenvolvimento)"
             >
               <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
@@ -121,11 +100,11 @@ const isDev = import.meta.env.DEV
               <div class="mt-auto h-11 rounded bg-accent-orange/80" />
             </div>
           ) : (
-            <div class="flex min-h-[430px] w-full flex-col items-center justify-center gap-3 border border-dashed border-neutral-light/35 bg-primary-dark-900/80 p-6 text-center backdrop-blur-sm">
+            <div class="flex min-h-[430px] w-full flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primary-dark/30 bg-neutral-light/85 p-6 text-center backdrop-blur-sm">
               <span class="font-sans text-[11px] font-semibold tracking-[0.18em] text-accent-orange uppercase">
                 Espaço reservado
               </span>
-              <p class="font-display text-lg font-bold text-neutral-light">Shortcode — 300px</p>
+              <p class="font-display text-lg font-bold text-primary-dark">Shortcode — 300px</p>
             </div>
           )}
         </slot>
@@ -141,12 +120,12 @@ const isDev = import.meta.env.DEV
           zona B · 62–79%
         </span>
       </div>
-      <div class="absolute inset-x-0 top-[17.5%] border-t border-dashed border-white/50"></div>
-      <div class="absolute inset-x-0 bottom-[17.5%] border-t border-dashed border-white/50"></div>
+      <div class="absolute inset-x-0 top-[17.5%] border-t border-dashed border-primary-dark/50"></div>
+      <div class="absolute inset-x-0 bottom-[17.5%] border-t border-dashed border-primary-dark/50"></div>
     </div>
     <div class="mx-auto h-full max-w-page px-6 lg:px-10">
       <div class="hero-grid grid h-full lg:gap-x-6">
-        <div class="border-x border-dashed border-white/60">
+        <div class="border-x border-dashed border-primary-dark/60">
           <span class="m-2 inline-block bg-black/60 px-2 font-mono text-[11px] text-white">
             col 1 · texto
           </span>
@@ -156,7 +135,7 @@ const isDev = import.meta.env.DEV
             col 2 · 270px · vazia
           </span>
         </div>
-        <div class="hidden border-x border-dashed border-white/60 lg:block">
+        <div class="hidden border-x border-dashed border-primary-dark/60 lg:block">
           <span class="m-2 inline-block bg-black/60 px-2 font-mono text-[11px] text-white">
             col 3 · 300px · shortcode
           </span>
@@ -170,36 +149,27 @@ const isDev = import.meta.env.DEV
   /* Divisórias sutis entre os destaques do hero (a partir de tablet) */
   @media (width >= 40rem) {
     .hero-point + .hero-point {
-      padding-left: 1.25rem;
-      border-left: 1px solid rgb(255 255 255 / 0.18);
-    }
-  }
-
-  @media (width >= 64rem) {
-    .hero-point + .hero-point {
       padding-left: 1.5rem;
+      border-left: 1px solid rgb(0 33 71 / 0.1);
     }
   }
 
   /* Metade da largura da página (1320px / 2): ancora as colunas e a foto no mesmo eixo. */
   .hero-photo,
-  .hero-navy,
-  .hero-navy-right,
-  .hero-dots,
+  .hero-wedge,
+  .hero-wedge-red,
   .hero-grid {
     --page-half: calc(var(--container-page) / 2);
     --page-edge: max(0px, calc(50% - var(--page-half)));
   }
 
-  .hero-navy {
-    background:
-      radial-gradient(1100px 520px at 12% -8%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
-      linear-gradient(
-        to right,
-        var(--color-primary-dark) 0%,
-        var(--color-primary-dark-800) 55%,
-        transparent 96%
-      );
+  /* No mobile a cunha é um bloco claro sobre a faixa da foto; o risco fica horizontal. */
+  .hero-wedge {
+    background: linear-gradient(165deg, #ffffff 0%, var(--color-neutral-gray-100) 100%);
+  }
+
+  .hero-wedge-red {
+    background: var(--color-accent-orange);
   }
 
   @media (min-width: 1024px) {
@@ -209,39 +179,27 @@ const isDev = import.meta.env.DEV
     }
 
     /* A foto termina na borda direita da página; com 1700px o assunto (62–79% da foto) cai na coluna 2. */
+    /* A foto ocupa só a faixa à direita da diagonal e sangra até a borda da tela: o
+               hero claro não tem mais o véu navy cobrindo a direita. É esta caixa, e não os
+               1700px do padrão, que o object-cover recorta. */
     .hero-photo {
       left: auto;
-      right: var(--page-edge);
+      right: 0;
       width: 1700px;
     }
 
-    /* Navy sólido sob a coluna 1, dissolvendo antes da janela. */
-    .hero-navy {
-      width: calc(50% - 20px);
-      background:
-        radial-gradient(900px 520px at 10% -10%, rgb(255 255 255 / 0.1) 0%, transparent 55%),
-        linear-gradient(
-          to left,
-          transparent 0px,
-          rgb(0 24 48 / 0.45) 70px,
-          var(--color-primary-dark-800) 150px,
-          var(--color-primary-dark) 100%
-        );
+    /* A diagonal recua 150px da direita de cima para baixo; o par vermelho é 10px mais largo. */
+    .hero-wedge,
+    .hero-wedge-red {
+      clip-path: polygon(0 0, 100% 0, calc(100% - 150px) 100%, 0 100%);
     }
 
-    /* Navy da direita: cobre a coluna do shortcode e fecha a margem da página. */
-    .hero-navy-right {
-      width: calc(50% - 261px);
-      background: linear-gradient(
-        to right,
-        transparent 0px,
-        rgb(0 24 48 / 0.55) 200px,
-        var(--color-primary-dark-900) 364px
-      );
+    .hero-wedge {
+      width: calc(50% + 24px);
     }
 
-    .hero-dots {
-      width: calc(50% - 60px);
+    .hero-wedge-red {
+      width: calc(50% + 32px);
     }
   }
 </style>

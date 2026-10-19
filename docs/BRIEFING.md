@@ -175,9 +175,41 @@ Nenhuma.
 | P2         | Clientes com autorização e 3 números com fonte                         | Destrava `clientes`                                                                                                             |
 | P2         | URL final de publicação                                                | `site.url` está provisória                                                                                                      |
 
+## Desvios do padrão
+
+O cliente aprovou em 19/10/2026 um layout de abertura diferente do padrão B2 e enviou o
+mockup. Header e Hero são estrutura fixa (regra 13), então o desvio fica registrado aqui.
+
+| O que mudou                            | Padrão v2.7.1                                                      | Nesta LP                                                                |
+| -------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| Barra do header                        | Navy, com a logo em placa branca pendurada (`-mt-3 -mb-10`)        | Branca, logo alinhada dentro da barra, tagline navy                     |
+| Fundo do hero                          | Navy com véu em gradiente sobre a foto                             | Claro (branco → cinza-100), com risco vermelho de 10px na diagonal      |
+| Texto do hero                          | Branco sobre navy                                                  | H1 navy, corpo em `ink-soft`                                            |
+| Os 3 pontos                            | Caixa translúcida acima dos CTAs                                   | Card branco com sombra **abaixo** dos CTAs, ícones vermelhos em círculo |
+| Âncora da foto                         | `right: var(--page-edge)`, 1700px, com véu navy fechando a direita | `right: 0`, 1700px — sangra até a borda da tela, porque o véu navy saiu |
+| Malha de pontos e mira técnica do hero | Presentes                                                          | Removidas (não existem no layout aprovado)                              |
+
+**Consequência no `check:lp`.** A verificação A8 compara Header e Hero com a assinatura da
+estrutura fixa. As duas assinaturas foram **repinadas na estrutura nova** em
+`scripts/check-lp.mjs`, com o motivo no próprio arquivo: o guard continua pegando mudança
+acidental, agora a partir desta base. O grid de três colunas
+(`minmax(0, 1fr) 270px 300px`), a coluna de 300px do shortcode, o `data-hero-grid` e o
+`fetchpriority="high"` do banner seguem os do padrão e continuam na assinatura.
+
+**O que ficou diferente do mockup, de propósito:**
+
+- **Coluna do chat.** O mockup não a mostra; o usuário pediu para mantê-la (19/10/2026).
+  A foto passa por baixo dela e o shortcode do chat fica sobre a imagem.
+- **Largura do container.** O mockup usa margens de ~107px em 1853px (container de
+  ~1640px); esta LP mantém o `--container-page: 1320px` do padrão, porque o token vale para
+  a página inteira e mudá-lo reposiciona todas as seções. Pendente de decisão.
+- **Ícone de engrenagem.** O `gear` do padrão desenhava um sol em 20px; o caminho foi
+  trocado por uma engrenagem de verdade em `src/data/icons.ts` (regra 9 permite entrada
+  nova no mapa). Vale também para os selos de cotação e para `diferenciais`.
+
 ## Aprovação
 
 - [x] Composição apresentada e aprovada pelo usuário em: `19/10/2026`
-- [x] **Hero congelado.** O usuário aprovou a primeira dobra como está em `19/10/2026` (eyebrow, H1, texto, os 3 pontos, os 2 CTAs e o enquadramento do banner). Não alterar sem novo pedido.
+- [x] **Hero redesenhado e aprovado** em `19/10/2026`, a partir do mockup enviado pelo usuário (ver Desvios do padrão).
 - [ ] Resumo da entrevista apresentado e aprovado pelo usuário em: `____/____/______`
 - [x] Padrão B2 versão: `2.7.1`

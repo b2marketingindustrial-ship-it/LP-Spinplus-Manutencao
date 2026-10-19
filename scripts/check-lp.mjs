@@ -176,11 +176,24 @@ for (const f of astroFiles) {
 /* A8. Estrutura fixa: assinaturas do Header, Hero, Cotação e Footer ---------- */
 {
   const expect = {
-    'Header.astro': ['sticky top-0 z-50', '-mt-3 -mb-10', 'rounded-b-xl', 'data-cta="header-cta"'],
+    // Desvio aprovado pelo cliente em 19/10/2026 (docs/BRIEFING.md, Desvios do padrão):
+    // barra branca com a logo alinhada dentro dela, no lugar da barra navy com a placa
+    // pendurada. A assinatura foi repinada na estrutura nova — ela continua guardando
+    // contra mudança acidental, agora a partir desta base.
+    'Header.astro': [
+      'sticky top-0 z-50',
+      'bg-neutral-light',
+      'header-logo',
+      'data-cta="header-cta"',
+    ],
+    // Mesmo desvio do Header (19/10/2026): o véu navy da esquerda virou cunha clara com
+    // risco vermelho na diagonal, e a foto passou a ocupar só a faixa à direita dela, em
+    // vez da janela de 1700px ancorada na borda da página. O grid de três colunas e a
+    // coluna do shortcode continuam os do padrão, e a assinatura foi repinada no resto.
     'Hero.astro': [
       'grid-template-columns: minmax(0, 1fr) 270px 300px',
-      'right: var(--page-edge)',
-      'width: 1700px',
+      'hero-wedge',
+      'clip-path: polygon(0 0, 100% 0, calc(100% - 150px) 100%, 0 100%)',
       'lg:w-[300px]',
       'data-hero-grid',
       'fetchpriority="high"',
