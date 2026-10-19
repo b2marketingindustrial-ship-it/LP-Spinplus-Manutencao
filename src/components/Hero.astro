@@ -161,6 +161,10 @@ const isDev = import.meta.env.DEV
   .hero-grid {
     --page-half: calc(var(--container-page) / 2);
     --page-edge: max(0px, calc(50% - var(--page-half)));
+    /* Topo da diagonal, ancorado no fim da coluna de texto e não no meio da tela. */
+    /* A coluna 1 termina em page-edge + min(100%, página) − 658px (padding 40 · 270 · 300 · 2 gaps de 24). */
+    /* A diagonal fica 24px depois dela na base e 150px mais à direita no topo. */
+    --wedge-top: calc(var(--page-edge) + min(100%, var(--container-page)) - 484px);
   }
 
   /* No mobile a cunha é um bloco claro sobre a faixa da foto; o risco fica horizontal. */
@@ -178,11 +182,11 @@ const isDev = import.meta.env.DEV
       grid-template-columns: minmax(0, 1fr) 270px 300px;
     }
 
-    /* A foto sangra até a borda da tela — o hero claro não tem mais o véu navy fechando a direita. Os 1700px seguem os do padrão: com eles o object-cover enquadra o RS 75i e o reservatório. */
+    /* A foto anda junto com a diagonal. Com 1430px o banner (1981×900) cabe inteiro na altura do hero, e o RS 75i começa a 563px da borda dele: o recuo de 638px o põe logo depois do risco, com o reservatório ainda na tela. O max() estica a foto em telas largas, onde 1430px não chegariam à borda direita. */
     .hero-photo {
-      left: auto;
-      right: 0;
-      width: 1700px;
+      left: calc(var(--wedge-top) - 638px);
+      right: auto;
+      width: max(1430px, calc(100% - var(--wedge-top) + 638px));
     }
 
     /* A diagonal recua 150px da direita de cima para baixo; o par vermelho é 10px mais largo. */
@@ -192,11 +196,11 @@ const isDev = import.meta.env.DEV
     }
 
     .hero-wedge {
-      width: calc(50% + 24px);
+      width: var(--wedge-top);
     }
 
     .hero-wedge-red {
-      width: calc(50% + 32px);
+      width: calc(var(--wedge-top) + 8px);
     }
   }
 </style>
