@@ -207,6 +207,26 @@ acidental, agora a partir desta base. O grid de três colunas
   trocado por uma engrenagem de verdade em `src/data/icons.ts` (regra 9 permite entrada
   nova no mapa). Vale também para os selos de cotação e para `diferenciais`.
 
+### Hero — segunda versão (substitui a cunha clara e a diagonal vermelha)
+
+Mockup e banner novos enviados pelo usuário em 19/10/2026.
+
+- **Banner** (`src/assets/heroBg.png`): render do RS 75i numa sala de ar comprimido, com o
+  lado esquerdo esfumado em branco, onde fica o texto. Recebido em 1902×827 e recortado só na
+  borda direita para 2,2:1 → 1981×900, a especificação do padrão. O banner anterior foi
+  guardado em `src/assets/processo/sala-compressores.png`, porque é o fundo do Como funciona.
+- **Posição da foto:** ancorada ao fim da coluna de texto (`--col-end`), para o RS 75i
+  começar logo depois do texto em qualquer largura. O hero tem altura mínima de 752px no
+  desktop, o que fixa a escala do banner. Medido de 1024 a 2560px: o texto termina 49 a 184px
+  antes do compressor.
+- **Os 3 pontos:** itens soltos com ícone vermelho em círculo e divisórias, sem card.
+- **Chat:** card de vidro fosco com o shortcode dentro, sem formulário falso — o título e os
+  campos do mockup vêm do plugin. A coluna continua com 300px, mas o card é deslocado para
+  encostar a 40px da margem da tela, como no mockup.
+- **Sobreposição conhecida:** de 1920px para cima o card fica ao lado do compressor; entre
+  1024 e 1600px ele cobre parte dele (119 a 474px), porque o container de 1320px não deixa
+  espaço para texto, compressor e card lado a lado. É a mesma pendência da largura do container.
+
 ### Serviços (`linhas`) — variante local
 
 Mockup aprovado pelo usuário em 19/10/2026. O componente

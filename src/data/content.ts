@@ -53,7 +53,7 @@ export const hero = {
   text: 'Manutenção preventiva, corretiva e reconstrução de unidades compressoras, com técnicos certificados pela Ingersoll Rand e peças originais de fábrica.',
   banner: {
     src: heroBg,
-    alt: 'Sala de ar comprimido com compressores de parafuso, secador e reservatório Ingersoll Rand',
+    alt: 'Compressor de parafuso Ingersoll Rand RS 75i instalado em sala de ar comprimido, com tubulação e reservatório',
   },
   points: [
     { icon: 'gear', line1: 'Manutenção preventiva', line2: 'e corretiva' },

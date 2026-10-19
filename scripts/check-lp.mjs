@@ -186,14 +186,15 @@ for (const f of astroFiles) {
       'header-logo',
       'data-cta="header-cta"',
     ],
-    // Mesmo desvio do Header (19/10/2026): o véu navy da esquerda virou cunha clara com
-    // risco vermelho na diagonal, e a foto passou a ocupar só a faixa à direita dela, em
-    // vez da janela de 1700px ancorada na borda da página. O grid de três colunas e a
-    // coluna do shortcode continuam os do padrão, e a assinatura foi repinada no resto.
+    // Mesmo desvio do Header (19/10/2026, segunda versão do hero): o banner ocupa o hero
+    // inteiro com o lado esquerdo esfumado, ancorado ao fim da coluna de texto, e o
+    // shortcode do chat fica num card fosco que encosta na margem da tela. O grid de três
+    // colunas e a coluna de 300px do shortcode continuam os do padrão.
     'Hero.astro': [
       'grid-template-columns: minmax(0, 1fr) 270px 300px',
-      'hero-wedge',
-      'clip-path: polygon(0 0, 100% 0, calc(100% - 150px) 100%, 0 100%)',
+      'left: calc(var(--col-end) - 688px)',
+      'hero-chat',
+      '<slot name="shortcode" />',
       'lg:w-[300px]',
       'data-hero-grid',
       'fetchpriority="high"',
