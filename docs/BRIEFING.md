@@ -234,6 +234,35 @@ cabeçalho do componente.
 descreve o card original; na variante o espaço da foto é vertical. O de resolução do card 01 é
 real (foto de 496px).
 
+### Como funciona (`processo`) e Aplicações (`aplicacoes`) — variantes locais
+
+Mockup aprovado pelo usuário em 19/10/2026. Mesmo caminho da seção de Serviços:
+`ProcessSteps.astro` e `ApplicationsGallery.astro` reescritos **só nesta LP**.
+
+| Seção        | Biblioteca                                                                    | Nesta LP                                                                                                                                                                                              |
+| ------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `processo`   | Painel navy arredondado dentro do container, etapas lado a lado na horizontal | Bloco navy de ponta a ponta com a sala de compressores (`heroBg.png`) escurecida ao fundo; texto à esquerda, linha do tempo vertical à direita com fio vermelho; fio vermelho de 3px fechando o bloco |
+| `aplicacoes` | Cabeçalho centralizado, número sobre a foto, seta em círculo                  | Cabeçalho à esquerda, número em vermelho acima do título, seta vermelha solta no rodapé do card                                                                                                       |
+
+**O bloco navy encosta em Aplicações.** A composição dá ao `processo` um respiro de baixo
+(`panel-lead`, 64px) que, com o bloco de ponta a ponta, viraria uma faixa branca entre o navy e
+o cinza. O componente aplica uma margem negativa **lida do próprio ritmo** (`RHYTHMS[rhythm].bottom`),
+então continua certo se a composição mudar o respiro.
+
+**A foto do fundo é a mesma do hero**, posicionada para o RS 75i cair no vão entre o texto e a
+linha do tempo — como no mockup, que também repete o compressor. Não é asset novo da seção.
+
+**Ícone novo:** `hard-hat` (capacete), em `src/data/icons.ts`, para "Equipe técnica em campo".
+
+O contrato das duas seções não mudou: mesmos dados, CTAs `processo-cta` e `aplicacoes-{id}`
+com `btn-slave-whats`, o card inteiro de aplicação como botão, o `processo` ainda é o bloco
+navy da fase de apoio, `tone`/`rhythm` vindos da composição, imagens `lazy` e guarda de
+`prefers-reduced-motion` em Aplicações.
+
+**Mesmo risco:** `npm run compose` recopia os dois componentes da biblioteca e desfaz as
+variantes. Restaure com
+`git checkout -- src/components/sections/ProcessSteps.astro src/components/sections/ApplicationsGallery.astro`.
+
 ## Aprovação
 
 - [x] Composição apresentada e aprovada pelo usuário em: `19/10/2026`

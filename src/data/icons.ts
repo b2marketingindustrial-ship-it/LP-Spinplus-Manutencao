@@ -80,6 +80,9 @@ export const iconPaths = {
     '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
   shield:
     '<path d="M12 3.3 5.2 6v5.3c0 4.2 2.8 7.9 6.8 9.4 4-1.5 6.8-5.2 6.8-9.4V6L12 3.3Z"/><path d="m9.2 11.9 2 2 3.6-4"/>',
+  /** Capacete de segurança — equipe técnica em campo. */
+  'hard-hat':
+    '<path d="M4 17h16v1.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V17Z"/><path d="M5.5 17v-2.5a6.5 6.5 0 0 1 13 0V17"/><path d="M10 8.3V6h4v2.3"/><path d="M12 10.5V14"/>',
   truck:
     '<rect x="2.8" y="6.8" width="10.6" height="9.4" rx="1"/><path d="M13.4 10.2h3.3l2.8 3v3h-6.1z"/><circle cx="7" cy="18" r="1.7"/><circle cx="16.4" cy="18" r="1.7"/>',
   barcode: '<path d="M4 5v14M7.2 5v14M9.6 5v14M13 5v14M15.4 5v14M18 5v14M20.5 5v14"/>',
