@@ -178,10 +178,7 @@ const isDev = import.meta.env.DEV
       grid-template-columns: minmax(0, 1fr) 270px 300px;
     }
 
-    /* A foto termina na borda direita da página; com 1700px o assunto (62–79% da foto) cai na coluna 2. */
-    /* A foto ocupa só a faixa à direita da diagonal e sangra até a borda da tela: o
-               hero claro não tem mais o véu navy cobrindo a direita. É esta caixa, e não os
-               1700px do padrão, que o object-cover recorta. */
+    /* A foto sangra até a borda da tela — o hero claro não tem mais o véu navy fechando a direita. Os 1700px seguem os do padrão: com eles o object-cover enquadra o RS 75i e o reservatório. */
     .hero-photo {
       left: auto;
       right: 0;
