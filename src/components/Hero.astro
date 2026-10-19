@@ -199,8 +199,16 @@ const isDev = import.meta.env.DEV
       width: var(--wedge-top);
     }
 
+    /* O vermelho existe só numa faixa ao longo da diagonal: se cobrisse a cunha inteira, */
+    /* vazaria como um fio na borda do canto arredondado do hero (antialias do recorte). */
     .hero-wedge-red {
       width: calc(var(--wedge-top) + 8px);
+      clip-path: polygon(
+        calc(100% - 24px) 0,
+        100% 0,
+        calc(100% - 150px) 100%,
+        calc(100% - 174px) 100%
+      );
     }
   }
 </style>

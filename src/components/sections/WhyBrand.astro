@@ -17,17 +17,27 @@ import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
 import Button from '@components/Button.astro'
 import type { SectionProps } from '@lib/layout'
+import { RHYTHMS } from '@lib/rhythm.mjs'
 import { cta } from '@data/content'
 import { why } from '@data/sections/diferenciais'
 
 type Props = SectionProps
 
 const { tone, rhythm } = Astro.props
+
+/* A seção vai de borda a borda com os próprios blocos: o navy sobe sobre o respiro de cima
+   (e a faixa sob a curva da seção anterior, --lp-round) e a faixa branca desce sobre o de
+   baixo. Assim as divisórias arredondadas caem entre cores diferentes e aparecem. */
+const bleedTop = RHYTHMS[rhythm]?.top ?? 0
+const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
 ---
 
 <Section id="diferenciais" tone={tone} rhythm={rhythm} container={false}>
   {/* Bloco navy: no mobile a foto vem antes do texto; no desktop ela sangra à direita */}
-  <div class="navy-premium relative flex flex-col overflow-hidden">
+  <div
+    class="navy-premium relative flex flex-col overflow-hidden"
+    style={`margin-top: calc(-${bleedTop}px - var(--lp-round, 0px)); padding-top: var(--lp-round, 0px)`}
+  >
     <div class="why-photo relative h-[320px] sm:h-[420px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[52%]">
       <Picture
         src={why.scene.src}
@@ -82,8 +92,11 @@ const { tone, rhythm } = Astro.props
     </div>
   </div>
 
-  {/* Faixa branca com os 5 diferenciais, separados por divisórias */}
-  <div class="border-b border-primary-dark/[0.06] bg-neutral-light">
+  {/* Faixa branca com os 5 diferenciais, separados por divisórias; fecha a seção com a curva */}
+  <div
+    class="rounded-b-[var(--lp-round)] bg-neutral-light shadow-[0_22px_40px_-26px_rgba(0,33,71,0.35)]"
+    style={`margin-bottom: -${bleedBottom}px`}
+  >
     <ul
       class="why-strip mx-auto grid max-w-page gap-x-6 gap-y-6 px-6 py-7 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-0 lg:px-10"
       aria-label={why.eyebrow}

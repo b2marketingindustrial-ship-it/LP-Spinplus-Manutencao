@@ -27,15 +27,18 @@ type Props = SectionProps
 const { tone, rhythm } = Astro.props
 const steps = process.steps
 
-/* O bloco navy avança sobre o respiro de baixo que a composição deu à seção e encosta na
-   seguinte, como no layout aprovado. O valor vem do ritmo, não de um número fixo. */
-const bleed = RHYTHMS[rhythm]?.bottom ?? 0
+/* O bloco navy ocupa a seção inteira: avança sobre os respiros que a composição deu a ela
+   (valores do ritmo, não números fixos) e, em cima, também sobre a faixa que fica sob a
+   curva da seção anterior (--lp-round, global.css). Assim as divisórias arredondadas caem
+   entre o navy e as seções vizinhas, e não entre duas áreas brancas. */
+const bleedTop = RHYTHMS[rhythm]?.top ?? 0
+const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
 ---
 
 <Section id="processo" tone={tone} rhythm={rhythm} container={false}>
   <div
-    class="process-band relative overflow-hidden border-b-[3px] border-accent-orange bg-primary-dark-900"
-    style={`margin-bottom: -${bleed}px`}
+    class="process-band relative overflow-hidden rounded-b-[var(--lp-round)] border-b-[3px] border-accent-orange bg-primary-dark-900"
+    style={`margin-top: calc(-${bleedTop}px - var(--lp-round, 0px)); margin-bottom: -${bleedBottom}px; padding-top: var(--lp-round, 0px)`}
   >
     {/* Sala de compressores ao fundo, escurecida pelos véus navy */}
     <div aria-hidden="true" class="absolute inset-0 lg:-left-[8%] lg:w-full">

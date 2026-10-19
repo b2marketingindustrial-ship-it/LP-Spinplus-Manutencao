@@ -287,6 +287,28 @@ plugin do WordPress troca pelo formulário — sem ele não há formulário no s
 verificação A7 exige os dois slots. Na prévia estática o código aparece em texto. O card não
 define fonte, cor nem alinhamento do conteúdo, para não interferir no formulário do plugin.
 
+### Divisórias arredondadas entre as seções
+
+Pedido do usuário em 19/10/2026, com o mesmo tratamento da LP Spinplus Compressores: cada
+seção termina com os cantos de baixo curvos (`--lp-round`: 32px no mobile, 48px a partir de
+1024px) e a seguinte passa por baixo dela. O CSS está no fim de `src/styles/global.css` e não
+desloca conteúdo: a margem negativa e a borda transparente do mesmo tamanho se anulam.
+
+A curva só aparece entre cores diferentes, então os blocos coloridos passaram a ocupar a
+seção até a borda — senão três das seis divisões cairiam entre duas áreas da mesma cor:
+
+| Divisão                          | O que fica de cada lado                  | Ajuste                                                                                                                                                     |
+| -------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hero → Serviços                  | Foto e área clara do hero sobre o branco | Nenhum (o hero já recorta o conteúdo). O risco vermelho do hero passou a existir só na faixa da diagonal: se cobrisse a cunha, vazava como um fio na curva |
+| Serviços → Como funciona         | Branco sobre o navy                      | O navy de `processo` sobe sobre o respiro de cima e a faixa sob a curva, com padding do mesmo tamanho para o texto não mudar de lugar                      |
+| Como funciona → Aplicações       | Navy (com o fio vermelho) sobre o cinza  | O navy de `processo` ganhou os cantos de baixo; o fio vermelho acompanha a curva                                                                           |
+| Aplicações → Diferenciais        | Cinza sobre o navy                       | O navy de `diferenciais` sobe, como o de `processo`                                                                                                        |
+| Faixa dos diferenciais → Cotação | Branco sobre o cinza                     | A faixa branca desce sobre o respiro de baixo e ganhou os cantos e uma sombra suave — branco sobre cinza-100 quase não aparece sem ela                     |
+| Cotação → Rodapé                 | Cinza sobre o navy                       | Nenhum                                                                                                                                                     |
+
+Os avanços sobre os respiros leem o valor do próprio ritmo da composição
+(`RHYTHMS[rhythm].top`/`.bottom`), não números fixos.
+
 ## Aprovação
 
 - [x] Composição apresentada e aprovada pelo usuário em: `19/10/2026`
