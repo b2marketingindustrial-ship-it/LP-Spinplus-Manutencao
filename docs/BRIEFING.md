@@ -152,15 +152,15 @@ Nenhuma.
 | Banner do hero | `src/assets/heroBg.png` (1981×900, brief 4.1.3)     | entregue    | Render de sala de ar comprimido Ingersoll Rand. **Pendência:** banner próprio no brief 4.1.3 |
 | Logo de marca  | `src/assets/brands/ingersoll-rand.webp` (400×160)   | não exibido | Com 1 marca o carrossel não renderiza. Só exibir após autorização de uso do logo (entrada 7) |
 
-| Asset                            | Arquivo esperado                                        | Status        | Observação                                                                                                                                                 |
-| -------------------------------- | ------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Serviço 1 — preventiva/corretiva | `src/assets/linhas/linha-1.png` (800×600)               | entregue      | Técnicos da Spinplus (`Capturar-2`). **Aviso do check:lp:** não é recorte com fundo transparente                                                           |
-| Serviço 2 — assistência técnica  | `src/assets/linhas/linha-2.png` (800×600)               | entregue      | Render de compressor Ingersoll Rand. **Aviso do check:lp:** fundo branco sólido                                                                            |
-| Serviço 3 — reconstrução         | `src/assets/linhas/linha-3.png` (800×600)               | entregue      | Rotores na oficina (`rotores-1`). **Aviso do check:lp:** foto de cena, não recorte                                                                         |
-| Serviço 4 — contratos (escuro)   | `src/assets/linhas/marcas.png` (1280×800)               | entregue      | Sala de compressores em operação                                                                                                                           |
-| Aplicações 1–4                   | `src/assets/aplicacoes/aplicacao-{1..4}.png` (1200×900) | entregue      | Recortes do render do hero, da unidade em bancada e da foto offshore do site. **Pendência:** fotos próprias 1200×900                                       |
-| Cenário (autoridade)             | `src/assets/diferenciais/cenario.jpg` (1600×900)        | entregue      | Planta de óleo e gás do site, escurecida para o texto branco do bloco navy. Origem em 500×432 — **resolução baixa**                                        |
-| Pessoa recortada (autoridade)    | `src/assets/diferenciais/pessoa.png` (1220×1000)        | **pendência** | Técnico recortado de `Capturar-2` (origem 232×404). **Aviso do check:lp:** proporção 1220×1977. Substituir por foto de corpo inteiro, recortada, 1220×1000 |
+| Asset                            | Arquivo esperado                                        | Status        | Observação                                                                                                                                                                                                                                                                   |
+| -------------------------------- | ------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Serviço 1 — preventiva/corretiva | `src/assets/linhas/linha-1.png` (600×800, vertical)     | entregue      | Técnicos da Spinplus (`Capturar-2`), recortados em 3:4 com os dois rostos. **Avisos do check:lp:** proporção (o manifesto espera 800×600 do card original), sem recorte transparente e **resolução baixa** — a foto original tem 496px; substituir quando houver foto melhor |
+| Serviço 2 — assistência técnica  | `src/assets/linhas/linha-2.png` (800×1067, vertical)    | entregue      | Render do RS 315 (LP irmã) recortado do fundo branco e montado no galpão vazio da LP irmã (`hero-fundo.jpg`) — **imagem ilustrativa composta**, não foto de atendimento. **Avisos do check:lp:** proporção e sem recorte transparente                                        |
+| Serviço 3 — reconstrução         | `src/assets/linhas/linha-3.png` (800×1067, vertical)    | entregue      | Rotores na oficina, do original vertical (`rotores-1-scaled`), com o flange no quadro. **Avisos do check:lp:** proporção e sem recorte transparente                                                                                                                          |
+| Serviço 4 — contratos (escuro)   | `src/assets/linhas/marcas.png` (1280×800)               | entregue      | Sala de compressores em operação                                                                                                                                                                                                                                             |
+| Aplicações 1–4                   | `src/assets/aplicacoes/aplicacao-{1..4}.png` (1200×900) | entregue      | Recortes do render do hero, da unidade em bancada e da foto offshore do site. **Pendência:** fotos próprias 1200×900                                                                                                                                                         |
+| Cenário (autoridade)             | `src/assets/diferenciais/cenario.jpg` (1600×900)        | entregue      | Planta de óleo e gás do site, escurecida para o texto branco do bloco navy. Origem em 500×432 — **resolução baixa**                                                                                                                                                          |
+| Pessoa recortada (autoridade)    | `src/assets/diferenciais/pessoa.png` (1220×1000)        | **pendência** | Técnico recortado de `Capturar-2` (origem 232×404). **Aviso do check:lp:** proporção 1220×1977. Substituir por foto de corpo inteiro, recortada, 1220×1000                                                                                                                   |
 
 ## Pendências priorizadas
 
@@ -206,6 +206,33 @@ acidental, agora a partir desta base. O grid de três colunas
 - **Ícone de engrenagem.** O `gear` do padrão desenhava um sol em 20px; o caminho foi
   trocado por uma engrenagem de verdade em `src/data/icons.ts` (regra 9 permite entrada
   nova no mapa). Vale também para os selos de cotação e para `diferenciais`.
+
+### Serviços (`linhas`) — variante local
+
+Mockup aprovado pelo usuário em 19/10/2026. O componente
+`src/components/sections/ProductLines.astro` foi reescrito **só nesta LP**, como a LP Spinplus
+Compressores já fez com outras seções.
+
+| O que mudou | Biblioteca `linhas`                                                 | Nesta LP                                                                                                                                     |
+| ----------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cabeçalho   | Título e texto empilhados à esquerda, carrossel de marcas à direita | Título à esquerda, texto à direita, fio vermelho fechando; eyebrow em vermelho. O carrossel continua no componente e só aparece com 4+ logos |
+| Grade       | 4 cards em linha                                                    | 2×2                                                                                                                                          |
+| Card        | Foto de produto recortada sobre palco claro, conteúdo embaixo       | Foto em toda a altura na lateral esquerda (44%), conteúdo à direita; numeração em vermelho com fio e o chip da tag em texto                  |
+| Fotos       | 800×600 paisagem, recortadas                                        | Verticais (3:4), de cena                                                                                                                     |
+
+O contrato da seção não mudou: mesmos dados, mesmos CTAs `linhas-{id}` com `btn-slave-whats`,
+um card escuro, `tone`/`rhythm` vindos da composição, imagens `lazy` e guarda de
+`prefers-reduced-motion`.
+
+**Risco:** `npm run compose` sempre recopia o componente da biblioteca e **desfaz esta
+variante** (os dados e as fotos ficam, porque o compositor preserva os que já existem). Se a
+página for recomposta, restaure o arquivo do git:
+`git checkout -- src/components/sections/ProductLines.astro`. O aviso também está no
+cabeçalho do componente.
+
+**Avisos novos do check:lp:** os de proporção dos três cards claros vêm do manifesto, que
+descreve o card original; na variante o espaço da foto é vertical. O de resolução do card 01 é
+real (foto de 496px).
 
 ## Aprovação
 
