@@ -4,7 +4,7 @@
  *
  * VARIANTE LOCAL DA SPINPLUS (aprovada pelo cliente em 19/10/2026, docs/BRIEFING.md,
  * Desvios do padrão): bloco coberto pelo banner do cliente, com o navy à esquerda já
- * fundido na foto dos técnicos offshore e o texto sobre ele; um traço vermelho no lugar do
+ * fundido na foto do técnico em diagnóstico e o texto sobre ele; um traço vermelho no lugar do
  * eyebrow; e os 5 diferenciais numa faixa branca com divisórias, em vez de cards. O contrato
  * da seção é o mesmo da biblioteca — dados, CTA `diferenciais-cta`, bloco navy da fase de
  * autoridade, tone/rhythm.
@@ -36,10 +36,10 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
   {/* Bloco navy: no mobile a foto vem antes do texto; no desktop o banner cobre o bloco */}
   {/* inteiro — o navy da esquerda já vem fundido na imagem, e o texto fica sobre ele. */}
   <div
-    class="navy-premium relative flex flex-col overflow-hidden"
+    class="navy-premium relative flex flex-col overflow-hidden [container-type:inline-size]"
     style={`margin-top: calc(-${bleedTop}px - var(--lp-round, 0px)); padding-top: var(--lp-round, 0px)`}
   >
-    <div class="why-photo relative h-[320px] sm:h-[420px] lg:absolute lg:inset-0 lg:h-auto">
+    <div class="why-photo relative h-[320px] sm:h-[420px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto">
       <Picture
         src={why.scene.src}
         alt={why.scene.alt}
@@ -49,7 +49,7 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
         fallbackFormat="webp"
         loading="lazy"
         decoding="async"
-        class="absolute inset-0 h-full w-full object-cover object-[80%_center] lg:object-[35%_center]"
+        class="absolute inset-0 h-full w-full object-cover object-[80%_center] lg:object-[100%_6%]"
         pictureAttributes={{ class: 'absolute inset-0 h-full w-full' }}
       />
     </div>
@@ -107,6 +107,21 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
 
 <style>
   @media (min-width: 1024px) {
+    /* A foto é ancorada ao fim da coluna de texto, como no hero: o compressor (47% da largura */
+    /* da imagem) começa 80px depois do texto em qualquer tela, e a borda esquerda se esfuma no */
+    /* navy do bloco. Alinhada à direita e pelo topo: o técnico não sai da tela nem perde a cabeça. */
+    .why-photo {
+      --edge: max(0px, calc((100cqw - var(--container-page)) / 2));
+      --text-end: calc(var(--edge) + 40px + 0.46 * (min(100cqw, var(--container-page)) - 80px));
+      --x: max(0px, calc((var(--text-end) + 80px - 0.47 * 100cqw) / 0.53));
+      left: var(--x);
+      mask-image: linear-gradient(
+        90deg,
+        transparent calc(var(--text-end) - var(--x)),
+        #000 calc(var(--text-end) - var(--x) + 70px)
+      );
+    }
+
     /* Divisórias verticais entre os diferenciais, como no layout aprovado. */
     .why-item {
       padding-inline: 1.5rem;
