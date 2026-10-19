@@ -178,5 +178,6 @@ Nenhuma.
 ## Aprovação
 
 - [x] Composição apresentada e aprovada pelo usuário em: `19/10/2026`
+- [x] **Hero congelado.** O usuário aprovou a primeira dobra como está em `19/10/2026` (eyebrow, H1, texto, os 3 pontos, os 2 CTAs e o enquadramento do banner). Não alterar sem novo pedido.
 - [ ] Resumo da entrevista apresentado e aprovado pelo usuário em: `____/____/______`
 - [x] Padrão B2 versão: `2.7.1`
