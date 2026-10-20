@@ -7,26 +7,43 @@
  */
 import { Image } from 'astro:assets'
 import logo from '../assets/LOGO.png'
+import ingersoll from '../assets/marca-ingersoll.png'
 import { site } from '../data/site'
 import { header, cta } from '../data/content'
 ---
 
 <header class="sticky top-0 z-50 border-b border-primary-dark/10 bg-neutral-light">
   <div class="mx-auto flex max-w-page items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 lg:px-10">
-    {/* 1. Logo alinhada na barra */}
-    <a href="/" class="flex shrink-0 items-center">
+    {/* 1. Logos alinhadas na barra: Spinplus | Ingersoll Rand */}
+    <div class="flex shrink-0 items-center gap-3 sm:gap-5">
+      <a href="/" class="flex shrink-0 items-center">
+        <Image
+          src={logo}
+          alt={site.brand}
+          width={598}
+          height={200}
+          format="webp"
+          loading="eager"
+          fetchpriority="low"
+          decoding="async"
+          class="header-logo h-9 w-auto sm:h-[3.15rem]"
+        />
+      </a>
+
+      <span aria-hidden="true" class="h-8 w-px shrink-0 bg-primary-dark/20 sm:h-11"></span>
+
       <Image
-        src={logo}
-        alt={site.brand}
-        width={598}
-        height={200}
+        src={ingersoll}
+        alt="Ingersoll Rand"
+        width={230}
+        height={50}
         format="webp"
         loading="eager"
         fetchpriority="low"
         decoding="async"
-        class="header-logo h-9 w-auto sm:h-[3.15rem]"
+        class="h-6 w-auto sm:h-10"
       />
-    </a>
+    </div>
 
     {/* 2. Tagline central (some no mobile) */}
     <span class="hidden flex-1 text-center font-display text-[15px] font-extrabold tracking-[0.05em] text-primary-dark uppercase sm:block lg:text-[17px]">
