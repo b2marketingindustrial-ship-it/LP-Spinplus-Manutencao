@@ -10,25 +10,22 @@
  * do conteúdo, para não interferir no layout do formulário que o plugin renderiza.
  */
 import Icon from './Icon.astro'
+import Eyebrow from './Eyebrow.astro'
 import { quote, cta } from '../data/content'
-import { site } from '../data/site'
 ---
 
 <section id="cotacao" class="bg-neutral-gray-100 pt-8 pb-20">
   <div class="mx-auto max-w-page px-6 lg:px-10">
-    <div class="quote-grid grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-center lg:gap-14">
+    <div class="quote-grid mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-center lg:gap-14">
       {/* Coluna de texto */}
       <div>
-        <span class="inline-flex items-center gap-3 font-sans text-[12px] font-bold tracking-[0.2em] text-primary-dark uppercase">
-          <span aria-hidden="true" class="h-[3px] w-10 bg-accent-orange"></span>
-          {quote.eyebrow}
-        </span>
+        <Eyebrow>{quote.eyebrow}</Eyebrow>
 
-        <h2 class="mt-4 font-display text-[2.25rem] leading-[1.05] font-extrabold tracking-[-0.015em] text-primary-dark sm:text-[2.75rem] lg:text-[3rem]">
+        <h2 class="mt-4 font-display text-[2.25rem] leading-[1.05] font-extrabold tracking-[-0.015em] sm:text-[2.75rem] lg:text-[3rem] text-primary-dark">
           {quote.title}
         </h2>
 
-        <p class="mt-4 max-w-[520px] font-sans text-[17px] leading-relaxed text-ink-soft">
+        <p class="mt-5 max-w-[520px] font-sans text-base leading-relaxed lg:text-[17px] text-ink-soft">
           {quote.text}
         </p>
 
@@ -41,7 +38,7 @@ import { site } from '../data/site'
           {cta.whatsapp}
         </button>
 
-        <ul class="mt-6 flex flex-wrap gap-x-7 gap-y-3">
+        <ul class="mt-6 flex flex-col gap-3">
           {quote.trust.map((item) => (
             <li class="flex items-center gap-2.5 font-sans text-[15px] text-ink">
               <Icon name={item.icon} class="size-6 shrink-0 text-accent-orange" />
@@ -51,30 +48,11 @@ import { site } from '../data/site'
         </ul>
       </div>
 
-      {/* Espaço do formulário: card vazio onde o plugin renderiza o shortcode */}
-      <div class="w-full">
-        <div class="quote-slot min-h-[360px] w-full rounded-xl border border-primary-dark/[0.06] bg-neutral-light p-6 shadow-[0_24px_48px_-30px_rgba(0,33,71,0.45)] sm:p-8">
+      {/* Espaço do formulário: só a área onde o plugin renderiza o shortcode, sem caixa */}
+      <div class="w-full lg:ml-auto lg:max-w-[560px]">
+        <div class="quote-slot min-h-[360px] w-full">
           <slot name="shortcode" />
         </div>
-
-        {/* Nota de LGPD */}
-        <p class="mt-3 font-sans text-[11px] leading-relaxed text-ink-soft/80">
-          {quote.lgpd}
-          {site.privacyUrl && (
-            <>
-              {' '}
-              <a
-                href={site.privacyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-semibold text-primary-dark underline-offset-2 hover:underline"
-              >
-                Política de privacidade
-              </a>
-              .
-            </>
-          )}
-        </p>
       </div>
     </div>
   </div>

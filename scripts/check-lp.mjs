@@ -483,6 +483,23 @@ async function checkAssetSpecs(manifest) {
         )
     }
 
+    if (spec.ratioRange && meta.width && meta.height) {
+      const [min, max] = spec.ratioRange
+      const real = meta.width / meta.height
+      if (real < min || real > max)
+        warn(
+          file,
+          `proporção ${meta.width}×${meta.height} fora da faixa aceita ` +
+            `(${min}:1 a ${max}:1) — a imagem fica pequena demais no espaço`,
+        )
+      if (spec.height && meta.height < spec.height * 0.8)
+        warn(
+          file,
+          `${meta.height}px de altura para um espaço de ${spec.height}px — ` +
+            'vai ser ampliada e perder nitidez',
+        )
+    }
+
     if (spec.alpha === true && (!meta.hasAlpha || stats.isOpaque))
       warn(
         file,
@@ -494,7 +511,7 @@ async function checkAssetSpecs(manifest) {
 
 /** Especificação das imagens da estrutura fixa, que não pertencem a nenhuma seção. */
 const FIXED_ASSET_SPECS = [
-  { dir: '.', match: 'LOGO', width: 240, height: 200, alpha: true },
+  { dir: '.', match: 'LOGO', height: 200, ratioRange: [0.8, 3.2], alpha: true },
   { dir: '.', match: 'heroBg', width: 1981, height: 900, alpha: false },
   { dir: 'brands', width: 400, height: 160, alpha: null },
 ]

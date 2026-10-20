@@ -4,7 +4,7 @@
  * A coluna 2 é a janela do banner; nunca coloque conteúdo nela. O banner segue o brief 4.1.3.
  * Abra a página com `?grid=1` para ver as colunas e a zona do assunto sobre a imagem.
  *
- * Desvio aprovado pelo cliente em 19/10/2026 (segunda versão): o banner ocupa o hero
+ * Desvio aprovado pelo cliente (terceira versão, 20/10/2026: fundo navy da marca; a segunda, de 19/10/2026): o banner ocupa o hero
  * inteiro e já traz o lado esquerdo esfumado em branco, onde fica o texto; os três pontos
  * são itens soltos com ícone em círculo, abaixo dos CTAs; e o shortcode do chat fica num
  * card de vidro fosco que encosta na margem da tela. Grid e coluna de 300px do shortcode
@@ -17,7 +17,10 @@ import Eyebrow from './Eyebrow.astro'
 import { hero, cta } from '../data/content'
 ---
 
-<section class="relative overflow-hidden bg-[#fbfbfd] [container-type:inline-size]" data-hero>
+<section
+  class="relative overflow-hidden bg-primary-dark-900 [container-type:inline-size]"
+  data-hero
+>
   {/* z1 — banner: faixa no rodapé da seção no mobile; no desktop, ancorado ao fim da coluna de texto */}
   <div class="hero-photo absolute inset-x-0 bottom-0 z-[1] h-[290px] lg:inset-y-0 lg:h-auto">
     <Picture
@@ -33,43 +36,56 @@ import { hero, cta } from '../data/content'
       class="h-full w-full object-cover object-[62%_center] lg:object-left"
       pictureAttributes={{ class: 'block h-full w-full' }}
     />
+    {/* Véu na cor da marca: multiplica o navy sobre o esfumado branco do banner e abre para a foto à direita */}
+    <span
+      aria-hidden="true"
+      class="hero-veil pointer-events-none absolute inset-0 mix-blend-multiply"
+    ></span>
+    <span aria-hidden="true" class="hero-glow pointer-events-none absolute inset-0"></span>
     {/* Emenda com o fundo da seção, caso a borda do banner não seja exatamente a mesma cor */}
     <span
       aria-hidden="true"
-      class="pointer-events-none absolute inset-y-0 left-0 hidden w-32 bg-gradient-to-r from-[#fbfbfd] to-transparent lg:block"
+      class="pointer-events-none absolute inset-y-0 left-0 hidden w-32 bg-gradient-to-r from-primary-dark-900 to-transparent lg:block"
     ></span>
   </div>
 
   {/* z5 — conteúdo */}
-  <div class="relative z-[5] mx-auto max-w-page px-6 pt-14 pb-[330px] lg:px-10 lg:py-24">
-    <div class="hero-grid grid items-center gap-y-12 lg:min-h-[560px] lg:gap-x-6">
+  <div class="relative z-[5] mx-auto max-w-page px-6 pt-14 pb-[330px] lg:px-10 lg:py-16">
+    <div class="hero-grid grid items-center gap-y-12 lg:min-h-[480px] lg:gap-x-6">
       {/* Coluna 1 — textos */}
       <div class="max-w-xl lg:max-w-none">
-        <Eyebrow tone="dark">{hero.eyebrow}</Eyebrow>
+        <Eyebrow tone="light">{hero.eyebrow}</Eyebrow>
 
-        <h1 class="mt-2 font-display text-[2.75rem] leading-[1.1] font-extrabold text-primary-dark sm:text-[3rem] lg:text-[2.75rem] xl:text-[3.1rem]">
+        <h1 class="mt-2 font-display text-[2.75rem] leading-[1.1] font-extrabold text-neutral-light sm:text-[3rem] lg:text-[2.75rem] xl:text-[3.1rem]">
           {hero.title}
         </h1>
 
-        <p class="mt-5 font-sans text-lg leading-relaxed text-ink-soft">{hero.text}</p>
+        <p class="mt-5 font-sans text-lg leading-relaxed text-neutral-light/80 lg:whitespace-pre-line">
+          {hero.text}
+        </p>
 
         <div class="mt-7 flex flex-wrap items-center gap-4">
           <Button cta="hero-primary" variant="primary">
             {cta.primary}
           </Button>
-          <Button cta="hero-secondary" variant="outline-dark" iconName="search" iconPosition="left">
+          <Button
+            cta="hero-secondary"
+            variant="outline-light"
+            iconName="search"
+            iconPosition="left"
+          >
             {cta.secondary}
           </Button>
         </div>
 
         {/* 3 pontos soltos: ícone em círculo e texto sempre em duas linhas */}
-        <ul class="hero-points mt-10 flex flex-col gap-y-5 sm:flex-row sm:gap-y-0">
+        <ul class="hero-points mt-10 flex flex-col gap-y-5 sm:flex-row sm:items-center sm:gap-y-0">
           {hero.points.map((point) => (
-            <li class="hero-point flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3">
-              <span class="flex size-14 shrink-0 items-center justify-center rounded-full bg-accent-orange/12">
-                <Icon name={point.icon} class="size-7 text-accent-orange" />
+            <li class="hero-point flex items-center gap-3.5">
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent-orange shadow-[0_8px_20px_-8px_rgba(229,38,32,0.8)]">
+                <Icon name={point.icon} class="size-7 text-neutral-light" />
               </span>
-              <span class="font-sans text-[15px] leading-snug font-medium text-primary-dark">
+              <span class="font-sans text-[15px] leading-snug font-medium text-neutral-light">
                 <span class="block whitespace-nowrap">{point.line1}</span>
                 <span class="block whitespace-nowrap">{point.line2}</span>
               </span>
@@ -81,7 +97,7 @@ import { hero, cta } from '../data/content'
       {/* Coluna 2 — VAZIA de propósito: janela do banner */}
       <div class="hidden lg:block" aria-hidden="true"></div>
 
-      {/* Coluna 3 — shortcode do chat (300px), em card de vidro fosco que encosta na margem da tela */}
+      {/* Coluna 3 — shortcode do chat (300px), em card de vidro fosco alinhado à margem direita do conteúdo */}
       <div class="hero-chat w-full lg:w-[300px]">
         <div class="min-h-[430px] w-full rounded-2xl border border-white/70 bg-white/75 p-6 shadow-[0_30px_60px_-30px_rgba(0,33,71,0.45)] backdrop-blur-md">
           <slot name="shortcode" />
@@ -124,12 +140,33 @@ import { hero, cta } from '../data/content'
 </section>
 
 <style>
+  /* Cor da Spinplus sobre o banner: navy sólido sob o texto, abrindo para a foto. */
+  .hero-veil {
+    background: linear-gradient(
+      90deg,
+      var(--color-primary-dark-900) 0%,
+      var(--color-primary-dark) 34%,
+      rgb(0 54 105) 50%,
+      #fff 74%
+    );
+  }
+  .hero-glow {
+    background:
+      radial-gradient(60% 55% at 0% 100%, rgb(229 38 32 / 0.28), transparent 70%),
+      linear-gradient(0deg, rgb(0 24 48 / 0.35), transparent 30%);
+  }
+  @media (width < 64rem) {
+    .hero-veil {
+      background: linear-gradient(180deg, var(--color-primary-dark-900) 0%, #fff 90%);
+    }
+  }
+
   /* Divisórias sutis entre os pontos (a partir de tablet) */
   @media (width >= 40rem) {
     .hero-point + .hero-point {
       margin-left: 1.75rem;
       padding-left: 1.75rem;
-      border-left: 1px solid rgb(0 33 71 / 0.12);
+      border-left: 1px solid rgb(255 255 255 / 0.18);
     }
   }
 
@@ -149,17 +186,11 @@ import { hero, cta } from '../data/content'
     }
 
     /* O banner começa antes do fim do texto, porque o lado esquerdo dele é esfumado em branco. */
-    /* Com 560px de grid + 2×96px de padding, o hero tem ao menos 752px: o banner (2,2:1) aparece com */
+    /* Com 480px de grid + 2×64px de padding, o hero tem ao menos 608px: o banner (2,2:1) aparece com */
     /* pelo menos 1654px de largura, e o RS 75i (43% dela) começa ≥ 24px depois do texto. */
     .hero-photo {
       left: calc(var(--col-end) - 688px);
       right: 0;
-    }
-
-    /* O card do chat sai do container e encosta na margem da tela, ao lado do compressor. */
-    /* cqw e não %: em translateX o % seria da largura do próprio card, não da seção. */
-    .hero-chat {
-      transform: translateX(max(0px, calc(50cqw - var(--container-page) / 2)));
     }
   }
 </style>

@@ -339,3 +339,23 @@ Os avanços sobre os respiros leem o valor do próprio ritmo da composição
 - [x] **Hero redesenhado e aprovado** em `19/10/2026`, a partir do mockup enviado pelo usuário (ver Desvios do padrão).
 - [ ] Resumo da entrevista apresentado e aprovado pelo usuário em: `____/____/______`
 - [x] Padrão B2 versão: `2.7.1`
+
+### Hero — terceira versão (navy da marca) e escala tipográfica única
+
+Pedido do usuário em 20/10/2026: o banner estava branco demais. O hero voltou ao fundo navy
+da Spinplus: um véu `mix-blend-multiply` (navy → branco) sobre o esfumado do banner, brilho
+vermelho no canto inferior esquerdo, textos claros e CTA secundário `outline-light`.
+
+Escala padronizada nas seções e na Cotação: eyebrow pelo componente `Eyebrow`; H2
+`mt-4 text-[2.25rem] sm:text-[2.75rem] lg:text-[3rem]`, `leading-[1.05]`, `tracking-[-0.015em]`;
+parágrafo de abertura `mt-5 text-base lg:text-[17px]`; botão sob o texto `mt-8`.
+
+### Ajustes de 20/10/2026 (pedidos do usuário)
+
+- **Hero mais baixo:** grid de 480px e padding de 64px (antes 560 e 96), altura mínima de 608px no desktop.
+- **WhatsApp flutuante removido:** `whatsapp` vazio em `site.ts` desliga o botão. O CTA "Chamar no WhatsApp" da Cotação continua.
+- **Logo recortada** sem as margens (598×200, proporção ~3:1). O `check-lp.mjs` da LP ganhou a faixa de proporção do starter 2.9.0 (`ratioRange`) para a logo.
+- **Cotação sem caixa:** o slot do formulário ficou só com a área do shortcode, sem borda, fundo e sombra.
+- **Nota de LGPD e link de privacidade removidos da página**, a pedido do usuário. Desvio do item 10.2 do padrão; o texto segue em `quote.lgpd` e a URL em `site.privacyUrl`.
+- **Respiro uniforme de 80px** entre o conteúdo e a borda das seções claras (Serviços, Aplicações e Cotação), com compensação local nos componentes; blocos navy com `py-16 lg:py-20`.
+- **Largura de conteúdo única:** toda a página usa o container de 1320px com 40px de padding (conteúdo de 1240px). O card do chat deixou de sair do container e termina na mesma margem direita do header e das seções; o parágrafo do cabeçalho de Serviços também encosta nela.

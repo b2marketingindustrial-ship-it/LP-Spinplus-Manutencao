@@ -30,28 +30,28 @@ export const why = {
   reasons: [
     {
       icon: 'calendar',
-      title: 'Experiência desde 2003',
-      description: 'Especialização em soluções de ar comprimido.',
+      title: 'Desde 2003',
+      description: 'Especialização em ar comprimido.',
     },
     {
       icon: 'shield',
-      title: 'Autorização Ingersoll Rand',
-      description: 'Distribuição e serviços autorizados no RJ.',
+      title: 'Autorizada Ingersoll',
+      description: 'Serviços autorizados no RJ.',
     },
     {
       icon: 'gear',
       title: 'Peças originais',
-      description: 'Trabalha com peças originais do fabricante.',
+      description: 'Peças originais do fabricante.',
     },
     {
       icon: 'users',
-      title: 'Técnicos certificados',
-      description: 'Equipe certificada pela Ingersoll Rand.',
+      title: 'Equipe certificada',
+      description: 'Certificação pela Ingersoll Rand.',
     },
     {
       icon: 'offshore',
       title: 'Atendimento offshore',
-      description: 'Técnicos habilitados para atuação em plataformas.',
+      description: 'Habilitados para plataformas.',
     },
   ],
 } as const satisfies {

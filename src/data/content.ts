@@ -50,7 +50,7 @@ export const hero = {
   eyebrow: 'Assistência técnica autorizada',
   /** Carrega a palavra-chave da campanha e a marca atendida (entrada 15). */
   title: `${site.product} ${site.context}`,
-  text: 'Manutenção preventiva, corretiva e reconstrução de unidades compressoras, com técnicos certificados pela Ingersoll Rand e peças originais de fábrica.',
+  text: 'Manutenção preventiva, corretiva e reconstrução de unidades\ncompressoras, com técnicos certificados pela Ingersoll Rand\ne peças originais de fábrica.',
   banner: {
     src: heroBg,
     alt: 'Compressor de parafuso Ingersoll Rand RS 75i instalado em sala de ar comprimido, com tubulação e reservatório',

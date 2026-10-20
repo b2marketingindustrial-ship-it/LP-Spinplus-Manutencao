@@ -1,7 +1,7 @@
 {
   "standardVersion": "2.7.1",
   "composedAt": "2026-10-19",
-  "library": "../Projetos B2/LP-STARTER-B2/sections",
+  "library": "../LP-STARTER-B2/sections",
   "primitives": [
     "BrandCarousel"
   ],

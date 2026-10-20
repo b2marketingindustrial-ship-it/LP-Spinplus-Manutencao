@@ -40,8 +40,8 @@ export const process = {
     {
       id: 'avaliacao',
       icon: 'clipboard-check',
-      title: 'Avaliação do equipamento',
-      description: 'Levantamento das ineficiências e do que cada compressor exige.',
+      title: 'Avaliação técnica',
+      description: 'Levantamento das ineficiências de cada compressor.',
     },
     {
       id: 'intervencao',

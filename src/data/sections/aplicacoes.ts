@@ -32,7 +32,7 @@ export const applications = {
     {
       id: 'parafuso',
       label: 'Unidades de parafuso',
-      description: 'Revisão e reconstrução de unidades compressoras de parafuso.',
+      description: 'Revisão e reconstrução de unidades de parafuso.',
       photo: {
         src: app2,
         alt: 'Unidade compressora de parafuso sobre base, em bancada de oficina',
@@ -41,7 +41,7 @@ export const applications = {
     {
       id: 'secadores',
       label: 'Secadores de ar',
-      description: 'Manutenção de secadores, filtros e drenos do tratamento de ar.',
+      description: 'Secadores, filtros e drenos do tratamento de ar.',
       photo: {
         src: app3,
         alt: 'Secador de ar comprimido e filtros coalescentes da linha Ingersoll Rand',
@@ -50,7 +50,7 @@ export const applications = {
     {
       id: 'offshore',
       label: 'Sistemas offshore',
-      description: 'Ar comprimido em plataformas, com equipe habilitada para embarque.',
+      description: 'Equipe habilitada para ar comprimido em plataformas.',
       photo: { src: app4, alt: 'Plataforma de petróleo offshore com técnico no convés' },
     },
   ],

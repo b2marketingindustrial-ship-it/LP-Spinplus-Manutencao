@@ -70,4 +70,4 @@ export const campaign = {
 }
 
 /** WhatsApp comercial (entrada 12). Número no formato internacional, só dígitos (ex.: 5511999999999). Vazio desativa o botão flutuante. */
-export const whatsapp = '552124450001'
+export const whatsapp = ''

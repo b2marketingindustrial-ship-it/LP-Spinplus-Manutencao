@@ -13,6 +13,7 @@
 import { Image } from 'astro:assets'
 import Section from '@components/Section.astro'
 import Icon from '@components/Icon.astro'
+import Eyebrow from '@components/Eyebrow.astro'
 import BrandCarousel from '@components/BrandCarousel.astro'
 import type { SectionProps } from '@lib/layout'
 import { cta } from '@data/content'
@@ -28,17 +29,14 @@ const lines = productLines.items
   {/* Cabeçalho: título à esquerda, texto de apoio à direita, fio vermelho fechando */}
   <div class="grid gap-5 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-12">
     <div>
-      <span class="inline-flex items-center gap-2.5 font-sans text-[12px] font-bold tracking-[0.2em] text-accent-orange uppercase">
-        <span class="h-[7px] w-[7px] bg-accent-orange"></span>
-        {productLines.eyebrow}
-      </span>
-      <h2 class="mt-4 font-display text-[2.25rem] leading-[1.05] font-extrabold tracking-[-0.01em] text-primary-dark sm:text-[2.75rem] lg:text-[2.875rem]">
+      <Eyebrow>{productLines.eyebrow}</Eyebrow>
+      <h2 class="mt-4 font-display text-[2.25rem] leading-[1.05] font-extrabold tracking-[-0.015em] sm:text-[2.75rem] lg:text-[3rem] text-primary-dark">
         {productLines.title}
       </h2>
     </div>
 
-    <div class="lg:pb-1">
-      <p class="max-w-[440px] font-sans text-base leading-relaxed text-ink-soft lg:text-[17px]">
+    <div class="lg:justify-self-end lg:pb-1">
+      <p class="max-w-[440px] font-sans text-base leading-relaxed lg:text-[17px] text-ink-soft">
         {productLines.text}
       </p>
       <BrandCarousel />
@@ -90,7 +88,7 @@ const lines = productLines.items
 
           <h3
             class:list={[
-              'mt-3 font-display text-[1.5rem] leading-[1.15] font-extrabold tracking-[-0.01em] lg:text-[1.625rem]',
+              'mt-3 font-display text-[1.375rem] leading-[1.15] font-extrabold tracking-[-0.01em] whitespace-nowrap lg:text-[1.5rem]',
               line.dark ? 'text-neutral-light' : 'text-primary-dark',
             ]}
           >
@@ -155,6 +153,8 @@ const lines = productLines.items
       </article>
     ))}
   </div>
+  {/* Respiro de 80px sob os cards (a composição dá 40; a seção seguinte é um bloco navy sangrado) */}
+  <div aria-hidden="true" class="h-10"></div>
 </Section>
 
 <style>

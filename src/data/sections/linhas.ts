@@ -25,7 +25,7 @@ export interface ProductLine {
 export const productLines = {
   eyebrow: 'Serviços',
   title: 'Manutenção em compressores e secadores',
-  text: 'Serviços para toda a linha Ingersoll Rand de compressores e secadores de ar comprimido, executados por equipe certificada pelo fabricante.',
+  text: 'Serviços para compressores e secadores Ingersoll Rand, com equipe certificada pelo fabricante.',
   items: [
     {
       id: 'preventiva-corretiva',
@@ -42,7 +42,7 @@ export const productLines = {
     {
       id: 'assistencia-tecnica',
       tag: 'Assistência',
-      title: 'Assistência técnica Ingersoll Rand',
+      title: 'Assistência autorizada',
       description: 'Atendimento técnico em compressores e secadores da marca.',
       photo: {
         src: linha2,
@@ -54,8 +54,8 @@ export const productLines = {
     {
       id: 'reconstrucao',
       tag: 'Especializado',
-      title: 'Reconstrução de unidades',
-      description: 'Recuperação técnica de unidades compressoras de parafuso.',
+      title: 'Reconstrução',
+      description: 'Recuperação técnica de unidades de parafuso.',
       photo: {
         src: linha3,
         alt: 'Rotores de uma unidade compressora de parafuso içados na oficina da Spinplus',

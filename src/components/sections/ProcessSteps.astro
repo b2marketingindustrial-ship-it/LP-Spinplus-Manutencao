@@ -19,13 +19,13 @@ import Eyebrow from '@components/Eyebrow.astro'
 import type { SectionProps } from '@lib/layout'
 import { RHYTHMS } from '@lib/rhythm.mjs'
 import { cta } from '@data/content'
-import { process } from '@data/sections/processo'
+import { process, type ProcessStep } from '@data/sections/processo'
 import cenario from '@assets/processo/sala-compressores.png'
 
 type Props = SectionProps
 
 const { tone, rhythm } = Astro.props
-const steps = process.steps
+const steps: readonly ProcessStep[] = process.steps
 
 /* O bloco navy ocupa a seção inteira: avança sobre os respiros que a composição deu a ela
    (valores do ritmo, não números fixos) e, em cima, também sobre a faixa que fica sob a
@@ -62,10 +62,10 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
         {/* Cabeçalho e CTA */}
         <div>
           <Eyebrow tone="light">{process.eyebrow}</Eyebrow>
-          <h2 class="mt-4 max-w-[560px] font-display text-[2.5rem] leading-[1.02] font-extrabold tracking-[-0.015em] text-neutral-light sm:text-5xl lg:text-[3.25rem]">
+          <h2 class="mt-4 font-display text-[2.25rem] leading-[1.05] font-extrabold tracking-[-0.015em] sm:text-[2.75rem] lg:text-[3rem] max-w-[560px] text-neutral-light">
             {process.title}
           </h2>
-          <p class="mt-5 max-w-[520px] font-sans text-lg leading-relaxed text-neutral-light/80">
+          <p class="mt-5 max-w-[520px] font-sans text-base leading-relaxed lg:text-[17px] text-neutral-light/80">
             {process.text}
           </p>
 
@@ -102,7 +102,7 @@ const bleedBottom = RHYTHMS[rhythm]?.bottom ?? 0
                   <h3 class="font-display text-lg leading-snug font-extrabold text-neutral-light">
                     {step.title}
                   </h3>
-                  <p class="mt-1 max-w-[340px] font-sans text-[14px] leading-relaxed text-neutral-light/70">
+                  <p class="mt-1 max-w-[380px] font-sans text-[14px] leading-relaxed text-neutral-light/70">
                     {step.description}
                   </p>
                   {step.when && (
